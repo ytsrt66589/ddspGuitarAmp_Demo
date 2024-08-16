@@ -194,6 +194,7 @@
       flex-basis: 100%;
     }
   }
+
   </style>
 </head>
 <body>
@@ -265,7 +266,6 @@
 </section>
 
 
-
 <!-- Paper abstract -->
 <section class="section hero is-light">
   <div class="container is-max-desktop">
@@ -275,7 +275,7 @@
         <div class="content has-text-justified">
           <p>
             Neural network models for guitar amplifier emulation, while being effective, often demand high computational cost and lack interpretability. Drawing ideas from physical amplifier design, this paper aims to address these issues with a new differentiable digital signal processing (DDSP)-based model, called ``DDSP guitar amp,'' that models the four components of a guitar amp (i.e., preamp, tone stack, power amp, and output transformer) using specific DSP-inspired designs.
-            With a set of time- and frequency-domain metrics, we demonstrate that DDSP guitar amp achieves performance comparable with that of black-box baselines while requiring less than 10\% of the computational operations per audio sample, thereby holding greater potential for usages in real-time  applications.
+            With a set of time- and frequency-domain metrics, we demonstrate that DDSP guitar amp achieves performance comparable with that of black-box baselines while requiring less than 10% of the computational operations per audio sample, thereby holding greater potential for usages in real-time  applications.
           </p>
         </div>
       </div>
@@ -293,7 +293,7 @@
         <h2 class="title is-3">Model Architecture</h2>
         <div class="content has-text-justified">
           <p>
-            The overall model architecture of DDSP Guitar Amp
+            The overall model architecture of DDSP Guitar Amp. The control parameters \($\phi$\) the model takes include the knob settings for five knobs: "gain," "bass," "mids," "treble," and "master" volume.
           </p>
         </div>
         <div class="item">
@@ -355,7 +355,7 @@
         <h2 class="title is-3">Case Study 1</h2>
         <div class="content has-text-justified">
           <p>
-            Does our assupmtion about GRU and Transformer is reasonable? 
+            Does our assupmtion about GRU and output transformer is reasonable? 
           </p>
         </div>
         <div class="item">
@@ -364,7 +364,7 @@
         </div>
         <div class="content has-text-justified">
           <p>
-            As seen in the figure, our trained transformer part showed the very similar behavior with the standard hysteresis curve. This shows that our assumption about GRU and hysteresis is aligned, and further control to the GRU has large potential to model the further complex transformer behavior. For example, the width of our distortion curve is not very wide. 
+            As seen in the figure, our trained output transformer part showed very similar behavior with the standard magnetic hysteresis curve of a physical output transformer. This shows that our assumption about GRU and hysteresis is aligned, and further control to the GRU has large potential to model the further complex transformer behavior. For example, the width of our distortion curve is not wide enough compared to that of the physical one. 
           </p>
         </div>
       </div>
@@ -478,7 +478,7 @@
           <p>
             These observations suggest important implications for the Small Concat-GRU model:
 
-1. DC Bias: The presence of a DC offset indicates a DC bias issue, which may be attributable to implicit bias terms within the model's architecture.
+1. DC Bias: The presence of a DC offset indicates a DC bias issue, which may be attributed to implicit bias terms within the model's architecture.
 2. Headroom Reduction: The large initial spike could potentially lead to decreased headroom in the audio signal, although further research is needed to confirm this effect.
 
 It's important to note that while these observations provide valuable insights, our current study did not include specific experiments to quantify these effects. Further research is necessary to fully understand the implications of these characteristics and their impact on overall audio quality and performance.
@@ -514,131 +514,8 @@ It's important to note that while these observations provide valuable insights, 
   <div class="container is-max-desktop">
     <div class="audio-section">
       <div class="audio-table-container">
-        <h2 class="table-title">Bass: 3, Middle: 7, Treble: 1, Gain: 5</h2>
-        <table class="audio-table">
-          <tr>
-            <th></th>
-            <th class="input">Input</th>
-            <th class="reference">Reference</th>
-            <th class="model1">Config A</th>
-            <th class="model2">Config B</th>
-            <th class="model3">Config C</th>
-            <th class="model4">Config D</th>
-            <th class="model5">Config E</th>
-            <th class="model6">Config F</th>
-          </tr>
-          <tr>
-            <td class="sample-column">Sample 1</td>
-            <td><audio id="audio-input-sample1" controls>
-              <source src="ddspGuitarAmp/audios/A/3_7_1_5/0/input.wav" type="audio/wav">
-            </audio></td>
-            <td><audio id="audio-reference-sample1" controls>
-              <source src="ddspGuitarAmp/audios/A/3_7_1_5/0/anno.wav" type="audio/wav">
-            </audio></td>
-            <td><audio id="audio-rnn1-sample1" controls>
-              <source src="ddspGuitarAmp/audios/A/3_7_1_5/0/pred.wav" type="audio/wav">
-            </audio></td>
-            <td><audio id="audio-rnn3-sample1" controls>
-              <source src="ddspGuitarAmp/audios/B/3_7_1_5/0/pred.wav" type="audio/wav">
-            </audio></td>
-            <td><audio id="audio-rnn21-sample1" controls>
-              <source src="ddspGuitarAmp/audios/C/3_7_1_5/0/pred.wav" type="audio/wav">
-            </audio></td>
-            <td><audio id="audio-ts1-sample1" controls>
-              <source src="ddspGuitarAmp/audios/D/3_7_1_5/0/pred.wav" type="audio/wav">
-            </audio></td>
-            <td><audio id="audio-ts3-sample1" controls>
-              <source src="ddspGuitarAmp/audios/E/3_7_1_5/0/pred.wav" type="audio/wav">
-            </audio></td>
-            <td><audio id="audio-ts3-2-sample1" controls>
-              <source src="ddspGuitarAmp/audios/F/3_7_1_5/0/pred.wav" type="audio/wav">
-            </audio></td>
-          </tr>
-          <tr>
-            <td class="sample-column">Sample 2</td>
-            <td><audio id="audio-input-sample1" controls>
-              <source src="ddspGuitarAmp/audios/A/3_7_1_5/1/input.wav" type="audio/wav">
-            </audio></td>
-            <td><audio id="audio-reference-sample1" controls>
-              <source src="ddspGuitarAmp/audios/A/3_7_1_5/1/anno.wav" type="audio/wav">
-            </audio></td>
-            <td><audio id="audio-rnn1-sample1" controls>
-              <source src="ddspGuitarAmp/audios/A/3_7_1_5/1/pred.wav" type="audio/wav">
-            </audio></td>
-            <td><audio id="audio-rnn3-sample1" controls>
-              <source src="ddspGuitarAmp/audios/B/3_7_1_5/1/pred.wav" type="audio/wav">
-            </audio></td>
-            <td><audio id="audio-rnn21-sample1" controls>
-              <source src="ddspGuitarAmp/audios/C/3_7_1_5/1/pred.wav" type="audio/wav">
-            </audio></td>
-            <td><audio id="audio-ts1-sample1" controls>
-              <source src="ddspGuitarAmp/audios/D/3_7_1_5/1/pred.wav" type="audio/wav">
-            </audio></td>
-            <td><audio id="audio-ts3-sample1" controls>
-              <source src="ddspGuitarAmp/audios/E/3_7_1_5/1/pred.wav" type="audio/wav">
-            </audio></td>
-            <td><audio id="audio-ts3-2-sample1" controls>
-              <source src="ddspGuitarAmp/audios/F/3_7_1_5/1/pred.wav" type="audio/wav">
-            </audio></td>
-          </tr>
-          <tr>
-            <td class="sample-column">Sample 3</td>
-            <td><audio id="audio-input-sample1" controls>
-              <source src="ddspGuitarAmp/audios/A/3_7_1_5/2/input.wav" type="audio/wav">
-            </audio></td>
-            <td><audio id="audio-reference-sample1" controls>
-              <source src="ddspGuitarAmp/audios/A/3_7_1_5/2/anno.wav" type="audio/wav">
-            </audio></td>
-            <td><audio id="audio-rnn1-sample1" controls>
-              <source src="ddspGuitarAmp/audios/A/3_7_1_5/2/pred.wav" type="audio/wav">
-            </audio></td>
-            <td><audio id="audio-rnn3-sample1" controls>
-              <source src="ddspGuitarAmp/audios/B/3_7_1_5/2/pred.wav" type="audio/wav">
-            </audio></td>
-            <td><audio id="audio-rnn21-sample1" controls>
-              <source src="ddspGuitarAmp/audios/C/3_7_1_5/2/pred.wav" type="audio/wav">
-            </audio></td>
-            <td><audio id="audio-ts1-sample1" controls>
-              <source src="ddspGuitarAmp/audios/D/3_7_1_5/2/pred.wav" type="audio/wav">
-            </audio></td>
-            <td><audio id="audio-ts3-sample1" controls>
-              <source src="ddspGuitarAmp/audios/E/3_7_1_5/2/pred.wav" type="audio/wav">
-            </audio></td>
-            <td><audio id="audio-ts3-2-sample1" controls>
-              <source src="ddspGuitarAmp/audios/F/3_7_1_5/2/pred.wav" type="audio/wav">
-            </audio></td>
-          </tr>
-          <tr>
-            <td class="sample-column">Sample 4</td>
-            <td><audio id="audio-input-sample1" controls>
-              <source src="ddspGuitarAmp/audios/A/3_7_1_5/3/input.wav" type="audio/wav">
-            </audio></td>
-            <td><audio id="audio-reference-sample1" controls>
-              <source src="ddspGuitarAmp/audios/A/3_7_1_5/3/anno.wav" type="audio/wav">
-            </audio></td>
-            <td><audio id="audio-rnn1-sample1" controls>
-              <source src="ddspGuitarAmp/audios/A/3_7_1_5/3/pred.wav" type="audio/wav">
-            </audio></td>
-            <td><audio id="audio-rnn3-sample1" controls>
-              <source src="ddspGuitarAmp/audios/B/3_7_1_5/3/pred.wav" type="audio/wav">
-            </audio></td>
-            <td><audio id="audio-rnn21-sample1" controls>
-              <source src="ddspGuitarAmp/audios/C/3_7_1_5/3/pred.wav" type="audio/wav">
-            </audio></td>
-            <td><audio id="audio-ts1-sample1" controls>
-              <source src="ddspGuitarAmp/audios/D/3_7_1_5/3/pred.wav" type="audio/wav">
-            </audio></td>
-            <td><audio id="audio-ts3-sample1" controls>
-              <source src="ddspGuitarAmp/audios/E/3_7_1_5/3/pred.wav" type="audio/wav">
-            </audio></td>
-            <td><audio id="audio-ts3-2-sample1" controls>
-              <source src="ddspGuitarAmp/audios/F/3_7_1_5/3/pred.wav" type="audio/wav">
-            </audio></td>
-          </tr>
-          <!-- ... Repeat for Sample 2 to Sample 6 ... -->
-        </table>
 
-        <h2 class="table-title">Bass: 5, Middle: 5, Treble: 5, Gain: 1</h2>
+        <h2 class="table-title">Bass: 5, Middle: 5, Treble: 5, Gain: 1 (Seen knob conditions)</h2>
         <table class="audio-table">
           <tr>
             <th></th>
@@ -762,7 +639,7 @@ It's important to note that while these observations provide valuable insights, 
           <!-- ... Repeat for Sample 2 to Sample 6 ... -->
         </table>
         
-        <h2 class="table-title">Bass: 5, Middle: 5, Treble: 5, Gain: 10</h2>
+        <h2 class="table-title">Bass: 5, Middle: 5, Treble: 5, Gain: 10 (Seen knob conditions)</h2>
         <table class="audio-table">
           <tr>
             <th></th>
@@ -886,7 +763,131 @@ It's important to note that while these observations provide valuable insights, 
           <!-- ... Repeat for Sample 2 to Sample 6 ... -->
         </table>
         
-        <h2 class="table-title">Bass: 10, Middle: 10, Treble: 10, Gain: 5</h2>
+        <h2 class="table-title">Bass: 3, Middle: 7, Treble: 1, Gain: 5 (Unseen knob conditions)</h2>
+        <table class="audio-table">
+          <tr>
+            <th></th>
+            <th class="input">Input</th>
+            <th class="reference">Reference</th>
+            <th class="model1">Config A</th>
+            <th class="model2">Config B</th>
+            <th class="model3">Config C</th>
+            <th class="model4">Config D</th>
+            <th class="model5">Config E</th>
+            <th class="model6">Config F</th>
+          </tr>
+          <tr>
+            <td class="sample-column">Sample 1</td>
+            <td><audio id="audio-input-sample1" controls>
+              <source src="ddspGuitarAmp/audios/A/3_7_1_5/0/input.wav" type="audio/wav">
+            </audio></td>
+            <td><audio id="audio-reference-sample1" controls>
+              <source src="ddspGuitarAmp/audios/A/3_7_1_5/0/anno.wav" type="audio/wav">
+            </audio></td>
+            <td><audio id="audio-rnn1-sample1" controls>
+              <source src="ddspGuitarAmp/audios/A/3_7_1_5/0/pred.wav" type="audio/wav">
+            </audio></td>
+            <td><audio id="audio-rnn3-sample1" controls>
+              <source src="ddspGuitarAmp/audios/B/3_7_1_5/0/pred.wav" type="audio/wav">
+            </audio></td>
+            <td><audio id="audio-rnn21-sample1" controls>
+              <source src="ddspGuitarAmp/audios/C/3_7_1_5/0/pred.wav" type="audio/wav">
+            </audio></td>
+            <td><audio id="audio-ts1-sample1" controls>
+              <source src="ddspGuitarAmp/audios/D/3_7_1_5/0/pred.wav" type="audio/wav">
+            </audio></td>
+            <td><audio id="audio-ts3-sample1" controls>
+              <source src="ddspGuitarAmp/audios/E/3_7_1_5/0/pred.wav" type="audio/wav">
+            </audio></td>
+            <td><audio id="audio-ts3-2-sample1" controls>
+              <source src="ddspGuitarAmp/audios/F/3_7_1_5/0/pred.wav" type="audio/wav">
+            </audio></td>
+          </tr>
+          <tr>
+            <td class="sample-column">Sample 2</td>
+            <td><audio id="audio-input-sample1" controls>
+              <source src="ddspGuitarAmp/audios/A/3_7_1_5/1/input.wav" type="audio/wav">
+            </audio></td>
+            <td><audio id="audio-reference-sample1" controls>
+              <source src="ddspGuitarAmp/audios/A/3_7_1_5/1/anno.wav" type="audio/wav">
+            </audio></td>
+            <td><audio id="audio-rnn1-sample1" controls>
+              <source src="ddspGuitarAmp/audios/A/3_7_1_5/1/pred.wav" type="audio/wav">
+            </audio></td>
+            <td><audio id="audio-rnn3-sample1" controls>
+              <source src="ddspGuitarAmp/audios/B/3_7_1_5/1/pred.wav" type="audio/wav">
+            </audio></td>
+            <td><audio id="audio-rnn21-sample1" controls>
+              <source src="ddspGuitarAmp/audios/C/3_7_1_5/1/pred.wav" type="audio/wav">
+            </audio></td>
+            <td><audio id="audio-ts1-sample1" controls>
+              <source src="ddspGuitarAmp/audios/D/3_7_1_5/1/pred.wav" type="audio/wav">
+            </audio></td>
+            <td><audio id="audio-ts3-sample1" controls>
+              <source src="ddspGuitarAmp/audios/E/3_7_1_5/1/pred.wav" type="audio/wav">
+            </audio></td>
+            <td><audio id="audio-ts3-2-sample1" controls>
+              <source src="ddspGuitarAmp/audios/F/3_7_1_5/1/pred.wav" type="audio/wav">
+            </audio></td>
+          </tr>
+          <tr>
+            <td class="sample-column">Sample 3</td>
+            <td><audio id="audio-input-sample1" controls>
+              <source src="ddspGuitarAmp/audios/A/3_7_1_5/2/input.wav" type="audio/wav">
+            </audio></td>
+            <td><audio id="audio-reference-sample1" controls>
+              <source src="ddspGuitarAmp/audios/A/3_7_1_5/2/anno.wav" type="audio/wav">
+            </audio></td>
+            <td><audio id="audio-rnn1-sample1" controls>
+              <source src="ddspGuitarAmp/audios/A/3_7_1_5/2/pred.wav" type="audio/wav">
+            </audio></td>
+            <td><audio id="audio-rnn3-sample1" controls>
+              <source src="ddspGuitarAmp/audios/B/3_7_1_5/2/pred.wav" type="audio/wav">
+            </audio></td>
+            <td><audio id="audio-rnn21-sample1" controls>
+              <source src="ddspGuitarAmp/audios/C/3_7_1_5/2/pred.wav" type="audio/wav">
+            </audio></td>
+            <td><audio id="audio-ts1-sample1" controls>
+              <source src="ddspGuitarAmp/audios/D/3_7_1_5/2/pred.wav" type="audio/wav">
+            </audio></td>
+            <td><audio id="audio-ts3-sample1" controls>
+              <source src="ddspGuitarAmp/audios/E/3_7_1_5/2/pred.wav" type="audio/wav">
+            </audio></td>
+            <td><audio id="audio-ts3-2-sample1" controls>
+              <source src="ddspGuitarAmp/audios/F/3_7_1_5/2/pred.wav" type="audio/wav">
+            </audio></td>
+          </tr>
+          <tr>
+            <td class="sample-column">Sample 4</td>
+            <td><audio id="audio-input-sample1" controls>
+              <source src="ddspGuitarAmp/audios/A/3_7_1_5/3/input.wav" type="audio/wav">
+            </audio></td>
+            <td><audio id="audio-reference-sample1" controls>
+              <source src="ddspGuitarAmp/audios/A/3_7_1_5/3/anno.wav" type="audio/wav">
+            </audio></td>
+            <td><audio id="audio-rnn1-sample1" controls>
+              <source src="ddspGuitarAmp/audios/A/3_7_1_5/3/pred.wav" type="audio/wav">
+            </audio></td>
+            <td><audio id="audio-rnn3-sample1" controls>
+              <source src="ddspGuitarAmp/audios/B/3_7_1_5/3/pred.wav" type="audio/wav">
+            </audio></td>
+            <td><audio id="audio-rnn21-sample1" controls>
+              <source src="ddspGuitarAmp/audios/C/3_7_1_5/3/pred.wav" type="audio/wav">
+            </audio></td>
+            <td><audio id="audio-ts1-sample1" controls>
+              <source src="ddspGuitarAmp/audios/D/3_7_1_5/3/pred.wav" type="audio/wav">
+            </audio></td>
+            <td><audio id="audio-ts3-sample1" controls>
+              <source src="ddspGuitarAmp/audios/E/3_7_1_5/3/pred.wav" type="audio/wav">
+            </audio></td>
+            <td><audio id="audio-ts3-2-sample1" controls>
+              <source src="ddspGuitarAmp/audios/F/3_7_1_5/3/pred.wav" type="audio/wav">
+            </audio></td>
+          </tr>
+          <!-- ... Repeat for Sample 2 to Sample 6 ... -->
+        </table>
+        
+        <h2 class="table-title">Bass: 10, Middle: 10, Treble: 10, Gain: 5 (Unseen knob conditions)</h2>
         <table class="audio-table">
           <tr>
             <th></th>
@@ -1009,6 +1010,9 @@ It's important to note that while these observations provide valuable insights, 
           </tr>
           <!-- ... Repeat for Sample 2 to Sample 6 ... -->
         </table>
+
+        
+        
       </div>
     </div>
   </div>
